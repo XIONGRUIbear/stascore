@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#13764b">
+  <meta name="description" content="商务统计分析期中项目展示评分，支持逐项评分、进度保存与跨周续评。">
+  <meta name="referrer" content="no-referrer">
+  <title>期中项目评分 · 商务统计分析</title>
+  <style>:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#202c26;background:#f5f7f5;font-synthesis:none;line-height:1.6;--green:#13764b;--line:#dfe6e1;--muted:#68796e}*{box-sizing:border-box}body{margin:0}button,input,textarea{font:inherit}button,a,input,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}a{color:var(--green)}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #82bb9d;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1{font-size:32px;letter-spacing:-.7px;line-height:1.35;margin-bottom:12px}h2{font-size:21px;line-height:1.4}h3{font-size:17px;margin-bottom:5px}.site-header{height:94px;max-width:1240px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:0 38px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:13px;font-weight:700;font-size:18px;text-decoration:none;color:inherit}.brand-mark{background:var(--green);color:white;width:42px;height:46px;display:grid;place-items:center;font-size:24px;border-radius:9px}.brand small{display:block;color:var(--muted);font-weight:400;font-size:12px;margin-top:2px}#identity{font-size:14px;text-align:right}#identity small{display:block;color:var(--muted)}.shell{max-width:1240px;display:grid;grid-template-columns:218px minmax(0,1fr);gap:42px;margin:46px auto;padding:0 38px 70px}aside{padding-top:4px}.step{display:flex;align-items:center;gap:13px;color:#849087;padding:12px 0;font-size:14px}.step span{width:28px;height:28px;border:1px solid #d5ded7;display:grid;place-items:center;border-radius:50%;font-size:12px}.step.current{color:var(--green);font-weight:700}.step.current span{background:var(--green);color:white;border-color:var(--green)}.aside-note{font-size:13px;color:var(--muted);margin:33px 0;padding-top:22px;border-top:1px solid var(--line)}.eyebrow{font-size:12px;font-weight:700;letter-spacing:1.3px;color:var(--green);margin-bottom:9px}.intro{color:var(--muted);max-width:680px;font-size:14px;margin-bottom:28px}.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px}.login-panel{max-width:550px}.field{display:block;margin:0 0 22px;font-size:14px;font-weight:600}.field input,.field textarea{display:block;margin-top:8px;width:100%;padding:12px 14px;border:1px solid #ccd8cf;border-radius:7px;background:white;color:#202c26;font-weight:400}.field small{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:6px}.primary,.secondary,.text-button{border-radius:7px;font-weight:600;padding:11px 20px;border:1px solid transparent;min-height:45px;line-height:1.4}.primary{background:var(--green);color:white}.primary:hover{background:#0a603c}.secondary{background:white;border-color:#cad6cd;color:#344e3d}.text-button{background:transparent;color:var(--green);padding:8px 0;min-height:auto}.login-panel .primary{width:100%}.form-error,.error{color:#a33122;font-size:14px}.form-error:empty{display:none}.setup-note,.inline-note{font-size:13px;padding:13px 16px;background:#fff7e9;border-left:3px solid #b48035;margin-bottom:24px}.footnote{font-size:12px;color:var(--muted);margin:18px 0 0}.group-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{background:white;border:1px solid var(--line);border-radius:10px;text-align:left;padding:20px;position:relative;color:inherit;width:100%;transition:border-color .15s,background .15s}.choice:hover{border-color:#7ba98c}.choice.selected{border:2px solid var(--green);background:#f1f8f3;padding:19px}.choice-title{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:17px;margin-bottom:10px}.choice-title small{font-size:12px;color:var(--muted);font-weight:400}.members{font-size:14px;line-height:1.9;color:#536458;word-spacing:9px}.choice-status{font-size:12px;margin-top:15px;color:var(--green)}.actions{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:26px}.actions .right{display:flex;gap:10px;align-items:center}.students-list{display:grid;gap:11px}.student-choice{display:flex;justify-content:space-between;align-items:center;padding:20px 22px}.student-choice.selected{padding:19px 21px}.student-name{font-weight:600;font-size:18px}.student-state{font-size:13px;color:var(--muted)}.tag{display:inline-block;font-size:11px;color:var(--green);background:#e8f2ec;padding:2px 7px;border-radius:4px;margin-left:8px;vertical-align:middle}.rating-heading{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.rating-heading h1{font-size:28px}.progress-track{height:5px;border-radius:5px;background:#e0e9e2;margin:8px 0 25px;overflow:hidden}.progress-track span{display:block;height:100%;background:var(--green);transition:width .2s}.rubric-section{background:#fff;border:1px solid var(--line);border-radius:11px;margin-bottom:18px;overflow:hidden}.rubric-section h2{padding:16px 21px;margin:0;background:#f0f5f1;border-bottom:1px solid var(--line);font-size:16px;display:flex;justify-content:space-between}.rubric-section h2 span{font-size:13px;color:#627268;font-weight:400}.criterion{display:grid;grid-template-columns:1fr 115px;gap:18px;padding:20px 21px;border-bottom:1px solid #edf0ed;align-items:center}.criterion:last-child{border:0}.criterion-title{font-weight:600;font-size:15px;display:block}.criterion p{font-size:13px;color:var(--muted);margin:5px 0 0}.score-box{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}.score-box input{width:71px;text-align:center;font-size:19px;font-weight:600;border:1px solid #cbd8cf;border-radius:6px;padding:8px 3px;color:#1d5737;background:white}.score-box input[aria-invalid=true]{border-color:#b44935;background:#fff7f5}.comment-panel{padding:20px 23px}.comment-panel .field{margin:0}.comment-panel textarea{resize:vertical;min-height:93px}.rating-footer{position:sticky;bottom:14px;background:#fff;border:1px solid #ccd9d0;border-radius:10px;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;gap:18px;box-shadow:0 3px 20px #183e2110;z-index:5;margin-top:21px}.total{font-size:26px;font-weight:700;line-height:1.2}.total small{font-size:13px;color:var(--muted);font-weight:400}.save-status{font-size:12px;color:var(--green);margin-top:5px;max-width:380px}.save-status.warning{color:#946217}.save-status.danger{color:#aa3525}.demo-banner{background:#fff1d8;color:#775517;text-align:center;font-size:13px;padding:9px}.conflict{background:#fff1e8;border:1px solid #ddb89e;padding:18px;border-radius:8px;margin-bottom:20px}.conflict p{font-size:14px}.conflict button{margin-right:10px}.admin-panel{overflow-x:auto;margin-top:20px;padding:0}table{border-collapse:collapse;width:100%;font-size:13px;white-space:nowrap}th,td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line)}th{background:#eef4ef;font-weight:600}.admin-toolbar{display:flex;flex-wrap:wrap;gap:12px}.muted{color:var(--muted);font-size:13px}.sync-bar{margin-bottom:18px;display:flex;gap:12px;align-items:center}.sync-bar .save-status{margin:0}#notice{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:min(90vw,600px);border-radius:8px;background:#203d2b;color:#fff;padding:12px 20px;font-size:14px;z-index:20;display:none}#notice.show{display:block}.empty{padding:22px;color:var(--muted)}.check{color:var(--green)}@media(max-width:900px){.shell{grid-template-columns:155px 1fr;gap:24px;padding:0 24px 60px}.site-header{padding:0 24px}.group-grid{grid-template-columns:1fr}.criterion{grid-template-columns:1fr 106px}}@media(max-width:650px){.site-header{height:77px;padding:0 18px}.brand{font-size:15px;gap:10px}.brand-mark{width:34px;height:39px;font-size:21px}.brand small{font-size:10px}.shell{display:block;padding:0 16px 45px;margin:20px auto}aside{margin-bottom:25px}.steps{display:flex;justify-content:space-between;gap:4px}.step{gap:5px;font-size:11px;padding:0}.step span{width:23px;height:23px;font-size:10px}.aside-note{display:none}h1{font-size:26px}.panel{padding:23px}.intro{margin-bottom:21px}.criterion{grid-template-columns:minmax(0,1fr) 96px;gap:10px;padding:18px 15px}.criterion p{font-size:12px;line-height:1.7}.score-box input{width:62px;font-size:18px}.rating-heading h1{font-size:25px}.rating-footer{padding:12px;bottom:9px;gap:10px}.rating-footer .primary{font-size:13px;padding:11px 13px;max-width:164px}.total{font-size:23px}.save-status{font-size:10px;max-width:180px}.actions{gap:10px}.actions button{font-size:13px}.group-grid{gap:11px}.choice{padding:18px}.choice.selected{padding:17px}.student-choice{padding:18px}.student-choice.selected{padding:17px}#identity{font-size:11px}.rating-heading .secondary{padding:9px 12px;font-size:12px}.sync-bar{justify-content:space-between}.admin-toolbar button{font-size:12px}}
+</style>
+  <style>.member-name{display:inline-block;white-space:nowrap}[hidden]{display:none!important}.rating-heading>div{min-width:0}.rating-heading>.secondary{flex-shrink:0;white-space:nowrap}</style>
+  <script>window.SCORING_CONFIG={"supabaseUrl":"https://aocorlveephahafnrxgx.supabase.co","supabasePublicKey":"sb_publishable_RUa5dW6eiqTjAv0UIM-bPA_XwKQItzU"};</script>
+  <script type="module">
+const GROUP_NAMES = [
+  [
+    "黄心愿",
+    "韩怡",
+    "符显玺",
+    "炎嘉康"
+  ],
+  [
+    "马灵洁",
+    "冯琪涵",
+    "王新茹"
+  ],
+  [
+    "李梓硕",
+    "张迎春",
+    "周雄",
+    "徐正昊",
+    "陶家勇"
+  ],
+  [
+    "汪秦锐",
+    "李长坤",
+    "刘常龙",
+    "谢育博",
+    "刘煜轩",
+    "袁沫若"
+  ],
+  [
+    "游亚楠",
+    "刘梦瑶",
+    "赵佳琳",
+    "刘一然"
+  ],
+  [
+    "张孟迪",
+    "郭子馨",
+    "田悦",
+    "杨洋",
+    "李佳霖"
+  ],
+  [
+    "符笑笑",
+    "韩青",
+    "邱子芮",
+    "马欣怡"
+  ]
+];
+// 学生编号保持不变，调整分组不会改变历史评分对象。
+const STUDENT_IDS = {
+  "黄心愿": 1,
+  "韩怡": 2,
+  "符显玺": 3,
+  "炎嘉康": 4,
+  "马灵洁": 5,
+  "冯琪涵": 6,
+  "王新茹": 7,
+  "袁沫若": 8,
+  "李梓硕": 9,
+  "张迎春": 10,
+  "周雄": 11,
+  "徐正昊": 12,
+  "陶家勇": 13,
+  "汪秦锐": 14,
+  "李长坤": 15,
+  "刘常龙": 16,
+  "谢育博": 17,
+  "刘煜轩": 18,
+  "游亚楠": 19,
+  "刘梦瑶": 20,
+  "赵佳琳": 21,
+  "刘一然": 22,
+  "张孟迪": 23,
+  "郭子馨": 24,
+  "田悦": 25,
+  "杨洋": 26,
+  "李佳霖": 27,
+  "符笑笑": 28,
+  "韩青": 29,
+  "邱子芮": 30,
+  "马欣怡": 31
+};
+const STUDENTS = GROUP_NAMES.flatMap((names, i) => names.map(name => ({ id: STUDENT_IDS[name], name, group_id: i + 1 })));
+const RUBRIC = [
+  ['object', '研究设计', '研究对象', '对象、范围和分析单位界定清楚。', 5],
+  ['question', '研究设计', '研究问题', '问题具体，可用数据检验，与商业场景相关。', 8],
+  ['variables', '研究设计', '变量与假设', '变量定义、测量口径及研究假设合理。', 7],
+  ['source', '数据与方法', '来源与抽样', '说明数据来源、时间、样本及获取或筛选规则。', 10],
+  ['quality', '数据与方法', '质量与伦理', '检查缺失、异常及口径；数据真实，个人信息匿名化。', 10],
+  ['reproducible', '数据与方法', '过程可复核', '提交数据、变量说明及清洗和分析步骤。', 5],
+  ['method', '统计分析', '方法匹配', '方法适合研究问题和变量类型，说明选择理由。', 10],
+  ['charts', '统计分析', '图表与统计量', '选用恰当，标明单位、样本量和必要标签。', 8],
+  ['accuracy', '统计分析', '计算准确', '计算、软件输出与图表数字一致。', 7],
+  ['answer', '解释与建议', '回答问题', '依据结果回应研究问题，区分相关与因果。', 8],
+  ['limitations', '解释与建议', '限制说明', '说明样本、数据或方法的局限及结论适用范围。', 5],
+  ['advice', '解释与建议', '商业建议', '建议具体可行，考虑收益、成本及实施条件。', 7],
+  ['structure', '展示与协作', '结构与视觉', '内容完整、逻辑清楚，PPT和图表易读。', 4],
+  ['delivery', '展示与协作', '表达与问答', '表达清楚、时间控制合理，回答有依据。', 4],
+  ['contribution', '展示与协作', '分工贡献', '注明成员分工，全员参与展示或问答。', 2]
+].map(([id, category, title, description, max], index) => ({ id, category, title, description, max, position: index + 1 }));
+
+
+const emptyProgress = () => ({ step: 'groups', group_id: null, student_id: null });
+function inspectScores(scores, rubric) {
+  let count = 0, total = 0;
+  const errors = [];
+  for (const item of rubric) {
+    const value = scores[item.id];
+    if (value === '' || value === null || value === undefined) continue;
+    if (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > item.max || !Number.isInteger(value * 2)) {
+      errors.push(item.id);
+    } else { count++; total += value; }
+  }
+  if (Object.keys(scores).some(key => !rubric.some(item => item.id === key))) errors.push('unknown');
+  return { count, total, errors, complete: count === rubric.length && errors.length === 0 };
+}
+function newDraft() {
+  return { scores: {}, comment: '', submitted: false, version: 0, dirty: false, mutation_id: null, conflict: false };
+}
+function editDraft(draft, patch) {
+  return { ...draft, ...patch, submitted: false, dirty: true, mutation_id: crypto.randomUUID() };
+}
+function mergeRemote(localDrafts, remoteRows) {
+  const result = { ...localDrafts };
+  for (const remote of remoteRows) {
+    const local = result[remote.student_id];
+    if (!local?.dirty) result[remote.student_id] = { ...newDraft(), ...remote, dirty: false };
+    else if (local.mutation_id === remote.mutation_id) result[remote.student_id] = { ...local, version: remote.version, dirty: false };
+    else result[remote.student_id] = { ...local, conflict: local.version !== remote.version };
+  }
+  return result;
+}
+function acknowledge(current, sentMutation, response) {
+  return { ...current, version: response.version, dirty: current.mutation_id !== sentMutation, conflict: false };
+}
+class LocalStore {
+  constructor(storage, prefix = 'bsa-midterm:v1') { this.storage = storage; this.prefix = prefix; }
+  read(key, fallback = null) {
+    const raw = this.storage.getItem(`${this.prefix}:${key}`);
+    if (!raw) return fallback;
+    try { return JSON.parse(raw); } catch { throw new Error('本机记录无法读取。请先导出或联系老师，不要清除浏览器数据。'); }
+  }
+  write(key, value) {
+    try { this.storage.setItem(`${this.prefix}:${key}`, JSON.stringify(value)); }
+    catch { throw new Error('浏览器无法保存本机记录。请开启网站存储权限，或立即联网同步。'); }
+  }
+  remove(key) { this.storage.removeItem(`${this.prefix}:${key}`); }
+}
+function csvText(rows) {
+  return '\uFEFF' + rows.map(row => row.map(value => {
+    let text = String(value ?? '');
+    if (/^[=+\-@\t\r]/.test(text)) text = "'" + text;
+    return '"' + text.replaceAll('"', '""') + '"';
+  }).join(',')).join('\r\n');
+}
+function summarize(students, raters, ratings, rubric) {
+  const raterMap = new Map(raters.map(r => [r.id, r]));
+  const avg = values => values.length ? Math.round(values.reduce((a,b) => a+b,0) / values.length * 100) / 100 : null;
+  return students.map(student => {
+    const rows = ratings.filter(r => r.student_id === student.id && r.submitted);
+    const totals = role => rows.filter(r => {
+      const rater = raterMap.get(r.rater_id);
+      return rater?.role === role && (role === 'teacher' || rater.student_id !== student.id);
+    }).map(r => inspectScores(r.scores, rubric).total);
+    const peers = totals('student'), teachers = totals('teacher');
+    return { ...student, peer_count: peers.length, peer_average: avg(peers), teacher_count: teachers.length, teacher_average: avg(teachers), self_count: rows.filter(r => raterMap.get(r.rater_id)?.student_id === student.id).length };
+  });
+}
+
+
+
+class CloudAPI {
+  constructor(config) {
+    this.url = (config.supabaseUrl || '').replace(/\/$/, '');
+    this.key = config.supabasePublicKey || '';
+  }
+  get configured() {
+    if (!/^https:\/\/[a-z0-9.-]+(?::\d+)?$/i.test(this.url)) return false;
+    if (this.key.startsWith('sb_publishable_')) return true;
+    if (this.key.startsWith('eyJ')) {
+      try { return JSON.parse(atob(this.key.split('.')[1].replaceAll('-','+').replaceAll('_','/'))).role === 'anon'; }
+      catch { return false; }
+    }
+    return false;
+  }
+  async rpc(name, params = {}) {
+    if (!this.configured) throw new Error('网站尚未连接评分数据库，请联系老师完成配置。');
+    const headers = { apikey: this.key, 'Content-Type': 'application/json' };
+    if (this.key.startsWith('eyJ')) headers.Authorization = `Bearer ${this.key}`;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    try {
+      const response = await fetch(`${this.url}/rest/v1/rpc/${name}`, { method: 'POST', headers, body: JSON.stringify(params), signal: controller.signal, cache: 'no-store' });
+      const data = await response.json();
+      if (!response.ok || data?.error) {
+        const err = new Error(data.error || data.message || '云端请求失败，请稍后重试。');
+        err.code = data.message?.includes('CONFLICT') ? 'CONFLICT' : data.message?.includes('SESSION_EXPIRED') ? 'SESSION_EXPIRED' : 'REQUEST_FAILED';
+        throw err;
+      }
+      return data;
+    } catch (error) {
+      if (error.name === 'AbortError') throw new Error('连接超时，评分保留在本机，联网后会重试。');
+      throw error;
+    } finally { clearTimeout(timeout); }
+  }
+  login(name, number) { return this.rpc('score_login', { p_name: name, p_student_number: number }); }
+  bootstrap(token) { return this.rpc('score_bootstrap', { p_token: token }); }
+  save(token, student, draft) { return this.rpc('score_save_rating', { p_token: token, p_student_id: student, p_scores: draft.scores, p_comment: draft.comment, p_submitted: draft.submitted, p_expected_version: draft.version, p_mutation_id: draft.mutation_id }); }
+  progress(token, progress) { return this.rpc('score_save_progress', { p_token: token, p_progress: progress }); }
+  admin(token) { return this.rpc('score_admin_export', { p_token: token }); }
+}
+
+// 演示数据独立存储，不会写入 Supabase，也不会混入正式成绩。
+class DemoAPI {
+  constructor(storage) { this.storage = storage; }
+  get configured() { return true; }
+  read() { return JSON.parse(this.storage.getItem('bsa-demo-server:v1') || '{"raters":[],"ratings":[],"progress":{}}'); }
+  write(data) { this.storage.setItem('bsa-demo-server:v1', JSON.stringify(data)); }
+  async login(name, number) {
+    const student = STUDENTS.find(s => s.name === name);
+    const teacher = name === '熊睿' && number === '920698';
+    if (!teacher && (!student || number === '920698' || !/^\d{4,20}$/.test(number))) throw new Error('请选择名单中的姓名，并输入4—20位数字学号。');
+    const data = this.read();
+    let rater = data.raters.find(r => r.student_number === number);
+    if (rater && rater.name !== name) throw new Error('该演示学号已由其他姓名使用。');
+    if (!rater) { rater = { id: crypto.randomUUID(), name, student_number: number, role: teacher ? 'teacher' : 'student', student_id: student?.id ?? null }; data.raters.push(rater); this.write(data); }
+    return { token: rater.id, rater };
+  }
+  async bootstrap(token) {
+    const data = this.read(), rater = data.raters.find(r => r.id === token);
+    if (!rater) throw new Error('演示身份已失效，请重新进入。');
+    return { rater, students: STUDENTS, rubric: RUBRIC, ratings: data.ratings.filter(r => r.rater_id === token), progress: data.progress[token] || null };
+  }
+  async save(token, student, draft) {
+    const data = this.read();
+    let row = data.ratings.find(r => r.rater_id === token && r.student_id === student);
+    if (row?.mutation_id === draft.mutation_id) return row;
+    if ((row?.version || 0) !== draft.version) { const e = new Error('CONFLICT'); e.code = 'CONFLICT'; throw e; }
+    const saved = { ...newDraft(), ...draft, student_id: student, rater_id: token, version: (row?.version || 0) + 1, updated_at: new Date().toISOString() };
+    if (row) Object.assign(row, saved); else data.ratings.push(saved);
+    this.write(data); return saved;
+  }
+  async progress(token, progress) { const data = this.read(); data.progress[token] = progress; this.write(data); return true; }
+  async admin(token) { const data = this.read(); if (data.raters.find(r => r.id === token)?.role !== 'teacher') throw new Error('仅教师可查看。'); return data; }
+}
+
+
+
+const demo = new URLSearchParams(location.search).get('demo') === '1';
+const api = demo ? new DemoAPI(localStorage) : new CloudAPI(window.SCORING_CONFIG || {});
+const store = new LocalStore(localStorage, demo ? 'bsa-midterm-demo:v1' : 'bsa-midterm:v1');
+const app = document.querySelector('#app');
+const state = { session: null, students: STUDENTS, rubric: RUBRIC, drafts: {}, progress: emptyProgress(), progress_dirty: false, storageError: '', error: '', syncing: false, admin: null };
+const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let syncPromise = null, saveTimer, noticeTimer;
+const $ = selector => document.querySelector(selector);
+function notify(text) { $('#notice').textContent = text; $('#notice').classList.add('show'); clearTimeout(noticeTimer); noticeTimer = setTimeout(() => $('#notice').classList.remove('show'), 5000); }
+function persist() {
+  if (!state.session) return;
+  try {
+    store.write(`account:${state.session.rater.id}`, { drafts: state.drafts, progress: state.progress, progress_dirty: state.progress_dirty, students: state.students, rubric: state.rubric });
+    state.storageError = '';
+  } catch (error) { state.storageError = error.message; }
+}
+function pending() { return state.progress_dirty || Object.values(state.drafts).some(d => d.dirty); }
+function statusText() {
+  if (state.storageError) return state.storageError;
+  if (demo) return '演示记录已保存到本机';
+  if (state.syncing) return '正在同步到云端…';
+  if (state.error) return `本机已保留 · ${state.error}`;
+  if (pending()) return '本机已保存 · 等待云端同步';
+  return '已同步到云端，可跨周继续';
+}
+function paintStatus() {
+  document.querySelectorAll('[data-save-status]').forEach(el => {
+    el.textContent = statusText();
+    el.className = 'save-status' + (state.storageError ? ' danger' : state.error || pending() ? ' warning' : '');
+  });
+}
+function saveSoon() { persist(); paintStatus(); clearTimeout(saveTimer); saveTimer = setTimeout(sync, 650); }
+async function sync() {
+  if (!state.session) return;
+  if (syncPromise) return syncPromise;
+  const run = (async () => {
+    if (!demo && !navigator.onLine) { state.error = '当前离线，联网后自动补传'; paintStatus(); return; }
+    state.syncing = true; state.error = ''; paintStatus();
+    try {
+      // 每条记录顺序保存；mutation_id 使超时重试幂等，version 防止跨设备覆盖。
+      for (const id of Object.keys(state.drafts)) {
+        let passes = 0;
+        while (state.drafts[id]?.dirty && !state.drafts[id].conflict && passes++ < 8) {
+          const sent = structuredClone(state.drafts[id]);
+          if (inspectScores(sent.scores, state.rubric).errors.length) break;
+          try {
+            const response = await api.save(state.session.token, Number(id), sent);
+            state.drafts[id] = acknowledge(state.drafts[id], sent.mutation_id, response);
+            persist();
+          } catch (error) {
+            if (error.code === 'CONFLICT') { state.drafts[id].conflict = true; persist(); if (state.progress.student_id === Number(id) && state.progress.step === 'rating') render(); }
+            throw error;
+          }
+        }
+      }
+      if (state.progress_dirty) {
+        const sent = JSON.stringify(state.progress);
+        await api.progress(state.session.token, JSON.parse(sent));
+        if (JSON.stringify(state.progress) === sent) state.progress_dirty = false;
+        persist();
+      }
+    } catch (error) {
+      state.error = error.code === 'CONFLICT' ? '其他设备有新版本，请处理评分冲突' : error.message;
+      if (error.code === 'SESSION_EXPIRED') state.error = '登录已过期，请重新输入姓名和学号；本机评分仍保留';
+    } finally { state.syncing = false; paintStatus(); }
+  })();
+  syncPromise = run;
+  try { return await run; }
+  finally { if (syncPromise === run) syncPromise = null; }
+}
+function go(step, patch = {}) { state.admin = null; state.progress = { ...state.progress, ...patch, step }; state.progress_dirty = true; saveSoon(); render(); sync(); window.scrollTo({ top: 0 }); }
+function raterLabel() { return state.session?.rater.role === 'teacher' ? '教师' : '学生'; }
+function shell() {
+  const step = !state.session ? 'login' : state.progress.step;
+  $('#sidebar').innerHTML = `<div class="steps">${[['login','确认身份'],['groups','选择小组'],['students','选择学生'],['rating','逐项评分']].map(([key,label],i) => `<div class="step ${step===key?'current':''}" ${step===key?'aria-current="step"':''}><span>${i+1}</span>${label}</div>`).join('')}</div><div class="aside-note">每位展示同学<br><strong>15 个评分小点 · 100 分</strong><p style="margin-top:12px">各步自动保存。下周回到本网站，可接着上次的进度评分。</p>${state.session?.rater.role==='teacher'?'<button class="text-button" data-action="admin">查看评分与导出 →</button>':''}</div>`;
+  $('#identity').innerHTML = state.session ? `<span>${escape(state.session.rater.name)} <span class="tag">${raterLabel()}</span></span><small><button class="text-button" data-action="logout">切换身份</button></small>` : '';
+  $('#demo-banner').hidden = !demo;
+}
+function syncBar() { return `<div class="sync-bar"><span data-save-status class="save-status"></span><button class="text-button" data-action="sync">立即同步</button></div>`; }
+function render() {
+  shell();
+  if (!state.session) return renderLogin();
+  if (state.admin) return renderAdmin();
+  if (state.progress.step === 'rating' && state.students.some(s=>s.id===state.progress.student_id)) renderRating();
+  else if (state.progress.step === 'students' && state.progress.group_id) renderStudents();
+  else renderGroups();
+  paintStatus();
+}
+function renderLogin() {
+  let cached = {};
+  try { cached = store.read('login', {}); } catch (error) { state.storageError = error.message; }
+  app.innerHTML = `<p class="eyebrow">MIDTERM PROJECT · 课堂互评</p><h1>期中项目评分</h1><p class="intro">输入姓名和学号，再选择当前展示的小组与同学。每个评分小点都会显示具体标准。</p>${!api.configured?'<div class="setup-note">正式评分数据库尚未配置。老师完成配置后即可使用；也可以先体验下方的本机演示。</div>':''}<form id="login-form" class="panel login-panel"><label class="field">姓名<input name="name" list="roster-names" autocomplete="name" maxlength="30" required placeholder="请输入名单中的姓名" value="${escape(cached.name || '')}"><datalist id="roster-names">${[...STUDENTS.map(s=>s.name),'熊睿'].map(name=>`<option value="${name}"></option>`).join('')}</datalist></label><label class="field">学号<input name="number" inputmode="numeric" autocomplete="username" pattern="[0-9]{4,20}" maxlength="20" required placeholder="请输入你的完整学号" value="${escape(cached.number || '')}"><small>请认真核对；同一姓名与学号会继续已有记录。</small></label><p class="form-error" id="login-error" role="alert"></p><button class="primary" type="submit">下一步 · 选择小组 →</button><p class="footnote">评分自动保存。公共设备使用后请切换身份。${!demo?'<br><a href="?demo=1">先体验本机演示</a>':'<br><a href="./">返回正式评分</a>'}</p></form>`;
+  const form = $('#login-form');
+  const update = () => { try { store.write('login', { name: form.elements.name.value, number: form.elements.number.value }); } catch (error) { $('#login-error').textContent=error.message; } };
+  form.addEventListener('input', update); update();
+  form.addEventListener('submit', async event => {
+    event.preventDefault(); const button = form.querySelector('button[type=submit]'); button.disabled=true; $('#login-error').textContent='';
+    try {
+      const session = await api.login(form.elements.name.value.trim(), form.elements.number.value.trim());
+      await loadSession(session);
+    } catch (error) { $('#login-error').textContent=error.message; button.disabled=false; }
+  });
+}
+async function loadSession(session) {
+  const bootstrap = await api.bootstrap(session.token);
+  const local = store.read(`account:${session.rater.id}`, {});
+  state.session=session; state.students=orderRoster(bootstrap.students); state.rubric=bootstrap.rubric;
+  state.drafts=mergeRemote(local.drafts || {}, bootstrap.ratings || []);
+  state.progress=local.progress_dirty ? local.progress : bootstrap.progress || local.progress || emptyProgress();
+  const correctedProgress=normalizeRosterProgress(state.progress,state.students);
+  state.progress_dirty=!!local.progress_dirty || correctedProgress.group_id!==state.progress.group_id;
+  state.progress=correctedProgress;
+  store.write('session', session); persist(); render(); sync();
+}
+function orderRoster(students) {
+  const order = new Map(STUDENTS.map((student, index) => [student.id, index]));
+  return [...students].sort((a,b) => (order.get(a.id) ?? 999) - (order.get(b.id) ?? 999));
+}
+function normalizeRosterProgress(progress, students) {
+  const result = { ...progress };
+  const student = students.find(item => item.id === Number(result.student_id));
+  if (student) result.group_id = student.group_id;
+  return result;
+}
+function renderGroups() {
+  app.innerHTML = `<p class="eyebrow">STEP 02</p><h1>现在是哪一组展示？</h1><p class="intro">核对组员姓名，选择当前进行展示的小组。</p>${syncBar()}<div class="group-grid">${Array.from({length:7},(_,i)=>i+1).map(group=>{
+    const students=state.students.filter(s=>s.group_id===group), done=students.filter(s=>state.drafts[s.id]?.submitted).length;
+    return `<button class="choice ${state.progress.group_id===group?'selected':''}" data-action="group" data-id="${group}" aria-pressed="${state.progress.group_id===group}"><span class="choice-title">第 ${group} 组 <small>${students.length} 位同学</small></span><span class="members">${students.map(s=>'<span class="member-name">'+escape(s.name)+'</span>').join('　')}</span><div class="choice-status">${done?`你已完成 ${done} / ${students.length} 位的评分`:'尚未评分'}</div></button>`;
+  }).join('')}</div><div class="actions"><span class="muted">共 7 组 · 31 位同学</span><button class="primary" data-action="to-students" ${!state.progress.group_id?'disabled':''}>下一步 · 选择展示学生 →</button></div>${state.session.rater.role==='teacher'?'<button class="text-button" data-action="admin">教师查看评分与导出 →</button>':''}`;
+}
+function renderStudents() {
+  const group=state.progress.group_id;
+  app.innerHTML = `<p class="eyebrow">STEP 03 · 第 ${group} 组</p><h1>选择当前展示的同学</h1><p class="intro">请给每位展示同学分别评分。已完成的评分也可以再次打开修改。</p>${syncBar()}<div class="students-list">${state.students.filter(s=>s.group_id===group).map(student=>{
+    const draft=state.drafts[student.id], stats=inspectScores(draft?.scores || {},state.rubric);
+    return `<button class="choice student-choice ${state.progress.student_id===student.id?'selected':''}" data-action="student" data-id="${student.id}" aria-pressed="${state.progress.student_id===student.id}"><span class="student-name">${escape(student.name)}${state.session.rater.student_id===student.id?'<span class="tag">本人 · 自评</span>':''}</span><span class="student-state">${draft?.conflict?'存在版本冲突':draft?.submitted?`✓ 已完成${draft.dirty?' · 待同步':''}`:stats.count?`草稿 · ${stats.count}/15 项`:'等待评分'}</span></button>`;
+  }).join('')}</div><div class="actions"><button class="secondary" data-action="back-groups">← 更换小组</button><button class="primary" data-action="to-rating" ${!state.progress.student_id?'disabled':''}>下一步 · 开始评分 →</button></div>`;
+}
+function renderRating() {
+  const student=state.students.find(s=>s.id===state.progress.student_id);
+  const draft=state.drafts[student.id] ||= newDraft();
+  const categories=[...new Set(state.rubric.map(r=>r.category))];
+  app.innerHTML = `<p class="eyebrow">STEP 04 · 第 ${student.group_id} 组</p><div class="rating-heading"><div><h1>为 ${escape(student.name)} 评分</h1><p class="intro">按展示表现逐项打分，支持 0.5 分。<br>留空表示未评分，0 分表示该项得分为零。</p></div><button class="secondary" data-action="back-students">← 返回学生</button></div>${draft.conflict?'<div class="conflict"><p>另一台设备已修改这位同学的评分。本机内容仍保留，请选择要使用的版本。</p><button class="secondary" data-action="use-remote">采用云端版本</button><button class="secondary" data-action="use-local">用本机内容更新云端</button></div>':''}<div class="progress-track"><span id="score-progress"></span></div><form id="rating-form">${categories.map(category=>{
+    const items=state.rubric.filter(r=>r.category===category);
+    return `<section class="rubric-section"><h2>${escape(category)}<span>${items.reduce((s,r)=>s+r.max,0)} 分</span></h2>${items.map(item=>`<div class="criterion"><div><label for="score-${item.id}" class="criterion-title">${escape(item.title)}</label><p id="desc-${item.id}">${escape(item.description)}</p></div><div class="score-box"><input id="score-${item.id}" name="${item.id}" data-score="${item.id}" type="number" inputmode="decimal" min="0" max="${item.max}" step="0.5" aria-describedby="desc-${item.id}" aria-label="${escape(item.title)}得分，满分${item.max}分" value="${draft.scores[item.id] ?? ''}" placeholder="—"><span>/ ${item.max}</span></div></div>`).join('')}</section>`;
+  }).join('')}<div class="panel comment-panel"><label class="field">给展示同学的建议 <span class="muted">选填</span><textarea name="comment" id="comment" maxlength="1000" placeholder="可以写下一条具体的改进建议…">${escape(draft.comment)}</textarea></label></div><div class="rating-footer"><div><div class="total"><span id="score-total">0</span> <small>/ 100 分 · <span id="score-count">0</span>/15 项</small></div><div data-save-status class="save-status"></div></div><button class="primary" type="submit">保存并选择下一位 →</button></div><p class="footnote">未填完也可返回，草稿会自动保存。评分对象与评分人分别记录；自评会单独标记。</p></form>`;
+  const form=$('#rating-form');
+  form.addEventListener('input',event=>{
+    const current=state.drafts[student.id];
+    if(event.target.dataset.score){const scores={...current.scores};const key=event.target.dataset.score;if(event.target.value==='')delete scores[key];else scores[key]=Number(event.target.value);state.drafts[student.id]=editDraft(current,{scores});}
+    else if(event.target.id==='comment')state.drafts[student.id]=editDraft(current,{comment:event.target.value});
+    saveSoon(); paintTotals();
+  });
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();const current=state.drafts[student.id];const stats=inspectScores(current.scores,state.rubric);
+    if(!stats.complete){notify('请完成全部15项评分，每项在允许范围内，按0.5分递增。');form.querySelector('input[aria-invalid=true],input:invalid')?.focus();return;}
+    if(current.conflict){notify('请先处理版本冲突，再保存评分。');return;}
+    const button=form.querySelector('button[type=submit]');button.disabled=true;
+    state.drafts[student.id]={...current,submitted:true,dirty:true,mutation_id:crypto.randomUUID()};persist();paintStatus();await sync();
+    notify(state.drafts[student.id].dirty?'评分已保留本机，尚未同步；请稍后点击立即同步。':demo?'演示评分已保存。':'评分已保存到云端。');go('students',{student_id:null});
+  });
+  paintTotals();
+}
+function paintTotals(){
+  const draft=state.drafts[state.progress.student_id];if(!draft||!$('#score-total'))return;
+  const stats=inspectScores(draft.scores,state.rubric);$('#score-total').textContent=stats.total;$('#score-count').textContent=stats.count;$('#score-progress').style.width=`${stats.count/15*100}%`;
+  document.querySelectorAll('[data-score]').forEach(input=>input.setAttribute('aria-invalid',stats.errors.includes(input.dataset.score)?'true':'false'));
+}
+async function openAdmin(){
+  try{await sync();state.admin=await api.admin(state.session.token);render();}catch(error){notify(error.message);}
+}
+function renderAdmin(){
+  const report=summarize(state.students,state.admin.raters,state.admin.ratings,state.rubric);
+  app.innerHTML=`<p class="eyebrow">教师工作台</p><h1>评分记录与完成情况</h1><p class="intro">只把完整提交的评分计入均分；草稿保留在明细中。学生互评不含自评，教师评分单独列出，不预设两者权重。</p><div class="admin-toolbar"><button class="primary" data-action="export-detail">导出逐项评分 CSV</button><button class="secondary" data-action="export-summary">导出学生汇总 CSV</button><button class="secondary" data-action="admin">刷新</button><button class="text-button" data-action="back-groups">返回评分 →</button></div><div class="panel admin-panel"><table><thead><tr><th>小组</th><th>展示学生</th><th>互评份数</th><th>互评均分</th><th>教师份数</th><th>教师均分</th><th>自评份数</th></tr></thead><tbody>${report.map(r=>`<tr><td>第${r.group_id}组</td><td>${escape(r.name)}</td><td>${r.peer_count}</td><td>${r.peer_average??'—'}</td><td>${r.teacher_count}</td><td>${r.teacher_average??'—'}</td><td>${r.self_count}</td></tr>`).join('')}</tbody></table></div><p class="footnote">已登记评分人 ${state.admin.raters.length} 位 · 已保存评分记录 ${state.admin.ratings.length} 条。导出含学号，请由老师妥善保存。</p>`;
+}
+function download(name,rows){const blob=new Blob([csvText(rows)],{type:'text/csv;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function exportData(summary){
+  if(!state.admin)return;
+  const date=new Date().toISOString().slice(0,10);
+  if(summary){const rows=summarize(state.students,state.admin.raters,state.admin.ratings,state.rubric);download(`学生评分汇总_${date}.csv`,[['小组','展示学生','学生互评份数（不含自评）','学生互评均分','教师份数','教师均分','自评份数'],...rows.map(r=>[r.group_id,r.name,r.peer_count,r.peer_average,r.teacher_count,r.teacher_average,r.self_count])]);return;}
+  const raters=new Map(state.admin.raters.map(r=>[r.id,r]));
+  const rows=state.admin.ratings.map(r=>{const s=state.students.find(s=>s.id===r.student_id),person=raters.get(r.rater_id);return[s?.group_id,s?.name,person?.name,person?.student_number,person?.role==='teacher'?'教师':'学生',person?.student_id===r.student_id?'是':'否',r.submitted?'已完成':'草稿',...state.rubric.map(item=>r.scores[item.id]),inspectScores(r.scores,state.rubric).total,r.comment,r.updated_at];});
+  download(`逐项评分明细_${date}.csv`,[['展示小组','展示学生','评分人','评分人学号','身份','是否自评','状态',...state.rubric.map(item=>`${item.category}-${item.title}（${item.max}分）`),'合计','评语','云端更新时间'],...rows]);
+}
+document.addEventListener('click',async event=>{
+  const button=event.target.closest('[data-action]');if(!button)return;const action=button.dataset.action;
+  if(action==='group'){state.progress={...state.progress,group_id:Number(button.dataset.id),student_id:null};state.progress_dirty=true;saveSoon();render();}
+  if(action==='student'){state.progress.student_id=Number(button.dataset.id);state.progress_dirty=true;saveSoon();render();}
+  if(action==='to-students'&&state.progress.group_id)go('students');
+  if(action==='to-rating'&&state.progress.student_id)go('rating');
+  if(action==='back-groups')go('groups');
+  if(action==='back-students')go('students');
+  if(action==='sync'){await sync();notify(statusText());}
+  if(action==='admin')await openAdmin();
+  if(action==='export-detail')exportData(false);
+  if(action==='export-summary')exportData(true);
+  if(action==='logout'){await sync();store.remove('session');state.session=null;state.drafts={};state.progress=emptyProgress();state.error='';render();}
+  if(action==='use-remote'||action==='use-local'){
+    try{const id=state.progress.student_id;const cloud=await api.bootstrap(state.session.token);const remote=cloud.ratings.find(r=>r.student_id===id)||newDraft();
+      state.drafts[id]=action==='use-remote'?{...newDraft(),...remote,dirty:false,conflict:false}:{...state.drafts[id],version:remote.version,conflict:false,dirty:true,mutation_id:crypto.randomUUID()};saveSoon();render();
+    }catch(error){notify(error.message);}
+  }
+});
+window.addEventListener('online',sync);
+window.addEventListener('pagehide',persist);
+document.addEventListener('visibilitychange',()=>{if(document.hidden){persist();sync();}else if(state.session)sync();});
+setInterval(()=>{if(state.session&&pending())sync();},12000);
+async function start(){
+  try{
+    const session=store.read('session');
+    if(session){
+      const local=store.read(`account:${session.rater.id}`,{});
+      state.session=session;state.drafts=local.drafts||{};state.progress=local.progress||emptyProgress();state.progress_dirty=!!local.progress_dirty;state.students=orderRoster((local.students||STUDENTS).map(student=>{
+        const current=STUDENTS.find(item=>item.id===student.id);
+        return current?{...student,group_id:current.group_id}:student;
+      }));state.progress=normalizeRosterProgress(state.progress,state.students);state.rubric=local.rubric||RUBRIC;render();
+      try{await loadSession(session);}catch(error){state.error=error.message;render();}
+    }else render();
+  }catch(error){state.storageError=error.message;render();notify(error.message);}
+}
+start();
+
+</script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="./"><span class="brand-mark">统</span><span>商务统计分析<small>海南师范大学 · 期中项目展示</small></span></a><div id="identity"></div></header>
+  <div id="demo-banner" class="demo-banner" hidden>本机演示模式 · 不连接云端，不作为正式评分记录。</div>
+  <div class="shell"><aside id="sidebar"></aside><main id="app" tabindex="-1"><p>正在读取评分进度…</p></main></div>
+  <div id="notice" role="status" aria-live="polite"></div>
+  <noscript>请启用 JavaScript 后使用评分网站。</noscript>
+</body>
+</html>
